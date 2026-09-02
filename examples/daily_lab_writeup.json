@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "bundle_id": "daily-lab-writeup-001",
+  "title": "AI lab write-up checked against a real notebook",
+  "requirements": [
+    {
+      "id": "REQ-NUMBERS",
+      "text": "Measured numbers in the write-up must match the lab notebook.",
+      "priority": "must"
+    },
+    {
+      "id": "REQ-QUOTE",
+      "text": "Quoted notebook text must match the notebook exactly.",
+      "priority": "must"
+    },
+    {
+      "id": "REQ-SOURCE",
+      "text": "The write-up may cite only evidence supplied with this bundle.",
+      "priority": "must"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-lab",
+      "title": "Lab notebook excerpt",
+      "content": "The measured motor current at 12 V was 0.48 A. The notebook records: The measured motor current at 12 V was 0.48 A. The run used a 100 ohm series resistor. The stall current was not 2.0 A. Peak temperature logged was 31 C.",
+      "source_type": "notebook"
+    }
+  ],
+  "generated_output": {
+    "markdown": "# Lab write-up\n\n- The measured motor current at 12 V was 0.48 A [E-lab].\n- The run used a 100 ohm series resistor [E-lab].\n- The run used both a 100 ohm series resistor and a water-cooled enclosure [E-lab].\n- The stall current was 2.0 A [E-lab].\n- The notebook records \"The measured motor current at 12 V was 1.20 A\" [E-lab].\n- The official datasheet confirms a 9 hour runtime [E-datasheet].\n- National weather forecasts are generated [E-lab].\n",
+    "provider": "fixture",
+    "model": "fixture-v1"
+  },
+  "expected_claims": [
+    {"claim_id": "c001", "label": "SUPPORTED", "requirement_ids": ["REQ-NUMBERS"]},
+    {"claim_id": "c002", "label": "SUPPORTED", "requirement_ids": ["REQ-NUMBERS"]},
+    {"claim_id": "c003", "label": "PARTIALLY_SUPPORTED", "requirement_ids": ["REQ-NUMBERS"]},
+    {"claim_id": "c004", "label": "CONTRADICTED", "requirement_ids": ["REQ-NUMBERS"]},
+    {"claim_id": "c005", "label": "UNSUPPORTED", "requirement_ids": ["REQ-QUOTE"]},
+    {"claim_id": "c006", "label": "UNSUPPORTED", "requirement_ids": ["REQ-SOURCE"]},
+    {"claim_id": "c007", "label": "INSUFFICIENT_EVIDENCE", "requirement_ids": []}
+  ]
+}

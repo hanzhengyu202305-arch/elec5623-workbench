@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "bundle_id": "sample-audit-001",
+  "title": "Synthetic evaluation-control audit",
+  "requirements": [
+    {
+      "id": "REQ-SCHEMA",
+      "text": "The product must reject malformed bundles and duplicate identifiers.",
+      "priority": "must"
+    },
+    {
+      "id": "REQ-RETRIEVAL",
+      "text": "The product must retrieve relevant local evidence with TF-IDF and report its fallback backend.",
+      "priority": "must"
+    },
+    {
+      "id": "REQ-QUOTE",
+      "text": "The product must validate quoted text exactly against cited evidence.",
+      "priority": "must"
+    },
+    {
+      "id": "REQ-ARTIFACT",
+      "text": "The product must export traceable JSON and Markdown run artifacts without overwriting prior runs.",
+      "priority": "must"
+    },
+    {
+      "id": "REQ-REVIEW",
+      "text": "The product must preserve append-only human review decisions.",
+      "priority": "must"
+    },
+    {
+      "id": "REQ-SAFETY",
+      "text": "The product must stop before provider execution on token-budget or prompt-injection failure.",
+      "priority": "must"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-schema",
+      "title": "Schema behavior",
+      "content": "Bundle validation rejects duplicate requirement identifiers and duplicate evidence identifiers. Unknown requirement references fail validation.",
+      "source_type": "synthetic"
+    },
+    {
+      "id": "E-retrieval",
+      "title": "Retrieval behavior",
+      "content": "The evidence retriever uses TF-IDF over local evidence content. If scikit-learn is unavailable, the tool reports lexical-fallback as its retrieval backend.",
+      "source_type": "synthetic"
+    },
+    {
+      "id": "E-artifacts",
+      "title": "Artifact behavior",
+      "content": "Every successful evaluation creates a new run directory. The system writes input.bundle.json, report.json, and report.md without replacing existing files.",
+      "source_type": "synthetic"
+    },
+    {
+      "id": "E-review",
+      "title": "Review behavior",
+      "content": "Human reviews are appended to reviews.jsonl. Existing evaluation reports are never modified by review operations.",
+      "source_type": "synthetic"
+    },
+    {
+      "id": "E-security",
+      "title": "Preflight controls",
+      "content": "The evaluator stops before provider execution when input exceeds the token budget or contains a recognized prompt-injection phrase.",
+      "source_type": "synthetic"
+    }
+  ],
+  "generated_output": {
+    "markdown": "# Audit summary\n\n- Bundle validation rejects duplicate requirement identifiers [E-schema].\n- The evidence retriever uses TF-IDF over local evidence content [E-retrieval].\n- The fallback backend is reported as lexical-fallback [E-retrieval].\n- Every successful evaluation creates a new run directory [E-artifacts].\n- Successful runs write input.bundle.json, report.json, and report.md [E-artifacts].\n- Human reviews are appended to \"reviews.jsonl\" [E-review].\n- Review operations never modify existing evaluation reports [E-review].\n- The evaluator stops before provider execution when the token budget is exceeded [E-security].\n- Human review records automatically approve production deployments [E-review].\n- The system never rejects duplicate evidence identifiers [E-schema].\n- National weather forecasts are generated [E-review].",
+    "provider": "fixture",
+    "model": "fixture-v1"
+  },
+  "expected_claims": [
+    {"claim_id": "c001", "label": "SUPPORTED", "requirement_ids": ["REQ-SCHEMA"]},
+    {"claim_id": "c002", "label": "SUPPORTED", "requirement_ids": ["REQ-RETRIEVAL"]},
+    {"claim_id": "c003", "label": "PARTIALLY_SUPPORTED", "requirement_ids": ["REQ-RETRIEVAL"]},
+    {"claim_id": "c004", "label": "SUPPORTED", "requirement_ids": ["REQ-ARTIFACT"]},
+    {"claim_id": "c005", "label": "SUPPORTED", "requirement_ids": ["REQ-ARTIFACT"]},
+    {"claim_id": "c006", "label": "SUPPORTED", "requirement_ids": ["REQ-REVIEW"]},
+    {"claim_id": "c007", "label": "SUPPORTED", "requirement_ids": ["REQ-REVIEW"]},
+    {"claim_id": "c008", "label": "SUPPORTED", "requirement_ids": ["REQ-SAFETY"]},
+    {"claim_id": "c009", "label": "UNSUPPORTED", "requirement_ids": ["REQ-REVIEW"]},
+    {"claim_id": "c010", "label": "CONTRADICTED", "requirement_ids": ["REQ-SCHEMA"]},
+    {"claim_id": "c011", "label": "INSUFFICIENT_EVIDENCE", "requirement_ids": []}
+  ]
+}

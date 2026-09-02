@@ -1,0 +1,27 @@
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+runs/
+acceptance/
+dist/
+*.egg-info/
+.DS_Store
+
+# Local PDF render/extraction scratch (may include course lecture extracts).
+tmp/
+
+# Unsent tutor email draft; do not mail from this repository.
+WEEK1_ABSENCE_EMAIL_DRAFT_NOT_SENT.md
+
+# Keep only the clearly blocked GroupXX draft PDF.
+output/pdf/*
+!output/pdf/ELEC5623_GroupXX_Proposal_DRAFT_NOT_FOR_SUBMISSION.pdf
+
+# GitHub Actions needs the `workflow` OAuth scope. The current gh token cannot
+# push .github/workflows; keep the local template untracked until refreshed.
+.github/workflows/
