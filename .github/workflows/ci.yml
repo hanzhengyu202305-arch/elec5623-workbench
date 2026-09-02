@@ -1,0 +1,39 @@
+# Fixture-only CI for this public Workbench repository. No live model calls.
+name: fixture-ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-draft-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install exact Python 3.11 project
+        run: python -m pip install -e '.[dev]'
+      - name: Tests and coverage
+        run: python -m pytest --cov=evidence_inspector --cov-report=term-missing
+      - name: Fixture-only draft corpus acceptance including 60-second NFR
+        run: |
+          python scripts/run_corpus_acceptance.py \
+            --runs-dir "${{ runner.temp }}/evidence-inspector-runs" \
+            --out "${{ runner.temp }}/corpus-acceptance.json"
+      - name: Retain draft acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixture-draft-corpus-acceptance
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/corpus-acceptance.json
+            ${{ runner.temp }}/evidence-inspector-runs

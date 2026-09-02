@@ -22,6 +22,3 @@ WEEK1_ABSENCE_EMAIL_DRAFT_NOT_SENT.md
 output/pdf/*
 !output/pdf/ELEC5623_GroupXX_Proposal_DRAFT_NOT_FOR_SUBMISSION.pdf
 
-# GitHub Actions needs the `workflow` OAuth scope. The current gh token cannot
-# push .github/workflows; keep the local template untracked until refreshed.
-.github/workflows/

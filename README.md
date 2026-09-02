@@ -370,8 +370,7 @@ course-mandated and are not a frozen-corpus or generalisation claim.
 ## CI location
 
 This dedicated public repository is
-https://github.com/hanzhengyu202305-arch/elec5623-workbench (`main`). A local
-`.github/workflows/ci.yml` template exists on disk but is not pushed: the
-current `gh` token lacks the `workflow` scope, so GitHub Actions is not
-enabled. Fixture CI has not run on GitHub. Human review remains the only
-automated success state; there is no auto-deploy.
+https://github.com/hanzhengyu202305-arch/elec5623-workbench (`main`).
+`.github/workflows/ci.yml` runs fixture-only pytest and draft corpus
+acceptance on push, pull request, and manual dispatch. Human review remains
+the only automated success state; there is no auto-deploy.
