@@ -1,6 +1,6 @@
 # Model Effectiveness Evaluation Workbench
 
-Private GitHub (teammate read access, not a public product):
+Public GitHub (anyone with the URL can clone/read; collaborator invites are optional):
 https://github.com/hanzhengyu202305-arch/elec5623-workbench
 
 Clone: `git clone https://github.com/hanzhengyu202305-arch/elec5623-workbench.git`
@@ -356,7 +356,7 @@ course-mandated and are not a frozen-corpus or generalisation claim.
 
 ## CI location
 
-This dedicated private repository is
+This dedicated public repository is
 https://github.com/hanzhengyu202305-arch/elec5623-workbench (`main`). A local
 `.github/workflows/ci.yml` template exists on disk but is not pushed: the
 current `gh` token lacks the `workflow` scope, so GitHub Actions is not

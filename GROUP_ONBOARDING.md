@@ -20,13 +20,13 @@ This is **ELEC5623 Track B** coursework, not a public product.
 
 ## Repo / 仓库与克隆
 
-- **GitHub (private):** https://github.com/hanzhengyu202305-arch/elec5623-workbench
+- **GitHub (public):** https://github.com/hanzhengyu202305-arch/elec5623-workbench
 - **Clone URL:** `https://github.com/hanzhengyu202305-arch/elec5623-workbench.git`
 - **Local source of truth (Zhengyu):** `/Users/hanzhengyu/Documents/study/projects/ELEC5623/evidence-inspector`
 - **Default branch:** `main`
-- **Visibility:** private. Five-person group read access = private repo + collaborator **Read** (`pull`), not public.
+- **Visibility:** public. Anyone with the URL can clone/read; collaborator invites are optional.
 
-Clone (after you are invited):
+Clone:
 
 ```bash
 git clone https://github.com/hanzhengyu202305-arch/elec5623-workbench.git
@@ -87,17 +87,15 @@ Automation cannot close these:
 
 Keep `GroupXX` and empty approval quotes until those facts exist. See `STATUS.md` and `TUTOR_APPROVAL_PACK.md`.
 
-## Grant read access / 给组员只读权限
+## Collaborator invites (optional) / 协作者邀请（可选）
 
-Owner: Settings → Collaborators and teams → Add people → permission **Read**.
+The repo is **public**: anyone with the URL can clone/read. Collaborator invites are optional (for write access or GitHub notifications).
 
-Exact command (replace `USERNAME`; do **not** invent handles):
+If you still want to add a collaborator (replace `USERNAME`; do **not** invent handles):
 
 ```bash
 gh api -X PUT repos/hanzhengyu202305-arch/elec5623-workbench/collaborators/USERNAME -f permission=pull
 ```
-
-把四位组员的 GitHub 用户名发给郑宇，就能加只读。
 
 ## Core files to read next / 建议接着读
 
