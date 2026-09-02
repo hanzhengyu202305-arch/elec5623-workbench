@@ -54,10 +54,8 @@ Subject: `ELEC5623 Track B written approval request: Model Effectiveness Evaluat
 > conservative token bound, not an invoice. Without complete labels the compare
 > report is comparison only and does not claim prediction or success.
 >
-> Course evaluation practice is related to effectiveness-beyond-price questions.
-> This product is independent coursework and does not claim that Constantinople
-> / ESIPS Pound for Pound is complete. We are not proposing a credit-policy
-> retrieval product or a conversational banking front door.
+> This product is independent ELEC5623 Track B coursework. It is a two-model
+> comparison workbench on the same lab-write-up bundle, not a chatbot.
 >
 > First-month scope uses Python 3.11, FastAPI, Pydantic v2, scikit-learn, and
 > pytest. It is limited to English JSON/Markdown and local synthetic evidence,
@@ -66,12 +64,9 @@ Subject: `ELEC5623 Track B written approval request: Model Effectiveness Evaluat
 > measurable NFRs, and a 20-bundle/200-claim synthetic Inspector evaluation
 > plan plus two-model fixture compare.
 >
-> We are also proactively disclosing that the high-level idea was informed by
-> earlier personal exploration called AegisOps. The ELEC5623 product has an
-> independent problem statement, codebase, schemas, data, tests, metrics,
-> report, and demo; no AegisOps or ELEC5308 code, data, figures, results, prose,
-> or demo artifacts will be reused. The attached prior-work disclosure gives the
-> full boundary.
+> We are also disclosing that this ELEC5623 product is independent new work and
+> does not copy prior personal or other-unit code, data, or figures. The
+> attached prior-work disclosure is short and is not an approval record.
 >
 > Could you please confirm in writing whether (1) this Workbench direction is
 > acceptable for Track B, (2) extending the Inspector audit to multi-model
@@ -125,9 +120,7 @@ requirements + supplied evidence + AI-generated Markdown
 ```
 
 Effectiveness is reported as separate dimensions. Spend is an estimated
-list-price bound, not a verdict. The product is not a credit-policy retriever
-or a conversational banking front door. Constantinople / ESIPS Pound for Pound
-is not claimed complete.
+list-price bound, not a verdict. The product is not a chatbot.
 
 ### Public contract
 
@@ -164,11 +157,10 @@ API: GET /health
 
 ### Prior-work boundary
 
-AegisOps is high-level inspiration only. The ELEC5623 problem statement,
-architecture, source, schemas, synthetic corpus, tests, metrics, charts, report,
-and demo are independent. ELEC5308 and research-paper artifacts are also
-excluded. Any future import remains blocked until provenance, licence, course
-rules, and written tutor approval are recorded.
+This ELEC5623 product is independent new work. It does not copy prior personal
+or other-unit code, data, or figures. Any proposed import remains blocked until
+course rules and written tutor approval are recorded. Do not claim approval
+until a written reply exists.
 
 ## 3. Exact decisions requested
 
@@ -179,7 +171,7 @@ Ask for a bounded answer to each item. “Discussed” is not an approval state.
 | TA-01 | Is this Workbench problem acceptable as ELEC5623 Track B? | Written yes/conditions/rejection from authorised tutor/coordinator | `PENDING` |
 | TA-02 | Is the first-month Must/Should/Won't boundary appropriate? | Written scope decision and required changes | `PENDING` |
 | TA-03 | Are the 18 FRs and ten NFRs suitable as draft requirements? | Marked list or written conditions | `PENDING` |
-| TA-04 | Is the prior-work disclosure sufficient, and is AegisOps inspiration permitted under the stated isolation controls? | Written decision referencing the disclosure | `PENDING` |
+| TA-04 | Is the prior-work disclosure sufficient for this independent ELEC5623 product? | Written decision referencing the disclosure | `PENDING` |
 | TA-05 | Is a new 20-bundle/200-claim synthetic corpus acceptable? | Written evaluation-method decision | `PENDING` |
 | TA-06 | Is the proposed annotation/freeze process sufficient? | Written approval or changes | `PENDING` |
 | TA-07 | Are the five labels and proposed metric thresholds appropriate? | Written decision; updated definitions/thresholds | `PENDING` |
@@ -209,7 +201,7 @@ Use the smallest set that supports the decision:
 - one fresh fixture demo, if requested.
 
 Do not attach ignored local acceptance directories, credentials, private member
-data, or material from AegisOps/ELEC5308/research-paper work.
+data, or material from other units or prior personal projects.
 
 ## 5. Meeting checklist
 

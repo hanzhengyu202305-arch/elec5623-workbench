@@ -111,8 +111,7 @@ provider privacy/outage, rubric-scope mismatch, and prior-work contamination.
 > and two named selection rules on the same bundle. We do not combine those
 > dimensions into one score. Measures are accepted only against independent
 > annotations and later human review, not spend, and not as a claim that the
-> quality rule predicts deployment success. Constantinople / ESIPS Pound for
-> Pound is not claimed complete. Negative tests cover injection, provider
+> quality rule predicts deployment success. Negative tests cover injection, provider
 > failure, budget excess, malformed input, invalid quotations, partial writes,
 > incomplete compare, and append-only review.
 
@@ -227,12 +226,11 @@ language; the `ModelGateway` tests that AI contribution. Deterministic rules
 remain responsible for schema, citations, quotations, artifacts, and safety.
 The evaluation will compare against non-model/trivial baselines.
 
-### Why not use AegisOps directly?
+### Is this copied from prior personal work?
 
-AegisOps is disclosed high-level inspiration only. This project has an
-independent problem, source tree, schemas, synthetic corpus, tests, metrics,
-report, and demo. No cross-project code, data, figures, results, or prose are
-used. Written tutor approval of that boundary is still pending.
+No. This ELEC5623 product is independent new work. It does not copy prior
+personal or other-unit code, data, figures, results, or report text. Written
+tutor approval of scope is still pending.
 
 ### Do you treat cheaper models as worse?
 

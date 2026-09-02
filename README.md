@@ -23,13 +23,10 @@ retrieves local evidence, classifies support, checks exact quotations, maps
 requirements, calculates transparent metrics, and creates an immutable run for
 human review.
 
-The first daily scene is still a student lab write-up, but the evaluation
-question is which of two models hallucinates less / fits the stated task
-better, not a generic document auditor. The tool is not a chat app and does not
-read PDFs; you paste notebook text as evidence. Course evaluation practice is
-related to industry “effectiveness beyond price” questions; this product is
-independent coursework and does not claim that any Constantinople / ESIPS
-Pound-for-Pound exercise is complete.
+The first daily scene is a student lab write-up. The evaluation question is
+which of two models hallucinates less / fits the stated task better, not a
+generic document auditor. The tool is not a chat app and does not read PDFs;
+you paste notebook text as evidence. This is independent ELEC5623 coursework.
 
 ## Current vertical slice
 

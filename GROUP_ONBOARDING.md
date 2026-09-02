@@ -14,9 +14,9 @@ On the same evidence-backed task it runs at least two named models, then reports
 
 Inspector 接收英文 JSON bundle（requirements + evidence + AI Markdown），切分 claims、检索本地证据、判定支持关系、核对精确引用、映射需求、计算透明指标，并生成不可变 run 供人工审核。
 
-This is **ELEC5623 Track B** coursework, not a public product.
-
-**Do not claim ESIPS P3 complete.** Constantinople / ESIPS Pound-for-Pound is related course evaluation practice, not a completed claim of this repo.
+This is **ELEC5623 Track B** coursework, not a public product. The Workbench
+compares two models on the same lab-write-up bundle and reports quality, task
+fit, time, and estimated cost for human review.
 
 ## Repo / 仓库与克隆
 

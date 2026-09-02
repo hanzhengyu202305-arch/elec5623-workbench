@@ -54,9 +54,7 @@ requirements, and exports an immutable run. The compare shell (FR-16-18)
 reports quality, task fit, latency, and estimated list-price cost separately
 and contrasts **min-cost** with a **quality/task-fit** rule. No combined
 index; no auto model-deploy. A completed run means only
-`READY_FOR_HUMAN_REVIEW`. Course evaluation practice is related to
-effectiveness-beyond-price questions; this is independent coursework and does
-not claim Constantinople / ESIPS Pound for Pound is complete.
+`READY_FOR_HUMAN_REVIEW`. This is independent ELEC5623 Track B coursework.
 
 First-month scope is Python 3.11, FastAPI, Pydantic v2, scikit-learn, and
 pytest, with synthetic English JSON/Markdown only. Live commercial compare
@@ -251,9 +249,8 @@ Unlike a generic critique prompt, the product has versioned schemas, stable
 claim IDs, retained citations and input hashes, bounded requirement IDs, typed
 model output, deterministic post-checks, no-clobber history, and explicit
 failure tests. It is independent from FActScore and RAGAs beyond cited context
-[4], [5]. AegisOps is prior-work inspiration only: no code, data, experiments,
-figures, report text, or main demo is reused. `PRIOR_WORK_DISCLOSURE.md` must be
-shown to the tutor and the actual decision recorded before approval.
+[4], [5]. This ELEC5623 product is independent new work; see
+`PRIOR_WORK_DISCLOSURE.md`. Tutor approval of that boundary is still pending.
 
 ## 7. Proposed methodology and system design
 
@@ -332,8 +329,7 @@ members, availability, skills, and FR allocation are confirmed. The main costs
 are engineering and review time, annotation effort, approved model usage if
 enabled, CI/runtime resources, and retained artifacts. No currency, cloud
 credit, customer, price, market-share, or savings claim is made. This is
-independent coursework, not a claim that Constantinople / ESIPS Pound for
-Pound is complete.
+independent ELEC5623 Track B coursework.
 
 Operational needs include Python onboarding, secrets outside source and
 artifacts, HTTPS for external credentials, storage retention, model-version
@@ -356,8 +352,8 @@ success. Estimated cost is list-price × conservative token bound, not a bill.
 
 The planned dataset is 20 bundles and 200 claims, containing only newly created
 synthetic requirements, evidence, Markdown, expected labels, and requirement
-mappings for ELEC5623. Nothing will be copied from AegisOps, ELEC5308, the
-research-paper workspace, or another assessed submission. Before final
+mappings for ELEC5623. The corpus is independent of prior personal or other-unit
+work. Before final
 evaluation, the group must obtain tutor approval, freeze operational label and
 ambiguity rules without seeing final predictions, use two permitted annotators
 or an approved alternative, resolve disagreement independently of model

@@ -63,8 +63,8 @@ requirements + local evidence + AI-generated Markdown
   risky recall 1.0, and mapping macro-F1 0.96.
 - The corpus is explicitly unfrozen and not tutor-approved; 37 label and 12
   mapping errors remain visible and no generalisation claim is made.
-- No code, data, charts, results, report, or demo assets are reused from
-  AegisOps, ELEC5308, or the research-paper workspace.
+- This ELEC5623 product is independent new work; it does not reuse prior
+  personal or other-unit code, data, or figures.
 
 ### What the team must still decide
 
@@ -114,8 +114,8 @@ and auditable.
 
 ### Integrity and product boundary
 
-- Are you willing to keep AegisOps, ELEC5308, research-paper work, and other
-  assessed artifacts fully separate?
+- Are you willing to keep this ELEC5623 product independent of prior personal
+  and other-unit work?
 - Will you record material AI assistance and personally verify the output?
 - Are you comfortable with a product that supports, but never replaces, the
   human decision?

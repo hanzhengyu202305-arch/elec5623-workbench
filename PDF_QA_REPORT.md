@@ -11,12 +11,12 @@ member sign-off, or Canvas submission evidence.
 
 | Artifact | SHA-256 |
 |---|---|
-| `PROPOSAL_CANDIDATE_NOT_FOR_SUBMISSION.md` | `d3f2951610873c9e3876eed29db1cede9c0d2ac92865f0e344a19e8f678bddf6` |
+| `PROPOSAL_CANDIDATE_NOT_FOR_SUBMISSION.md` | `bf879704e8af7cbb7f9ddcd959cc376937cc6c091e40284b66ae7d23daa47ae3` |
 | `scripts/build_proposal_pdf.py` | `a120b09429e2ef46765bb75ff1584ef534a08fa2cb1188cfad3ff43d062b3730` |
 | `scripts/test_proposal_pdf_builder.py` | `2f97fd58d86e2721cf438889f6e6b37b461e1b139cb4ffcf071a0b8ca8943917` |
-| `output/pdf/ELEC5623_GroupXX_Proposal_DRAFT_NOT_FOR_SUBMISSION.pdf` | `b02f49d538474f22508af731e8ff6558c55e260028c2890f014575506031fab4` |
+| `output/pdf/ELEC5623_GroupXX_Proposal_DRAFT_NOT_FOR_SUBMISSION.pdf` | `9f97317d7c7b75c4723ce33101b35b369d987529e8caeb48118a6f35c755acbe` |
 
-The builder normalizes `5,328` source tokens across the complete candidate.
+The builder normalizes `5,283` source tokens across the complete candidate.
 Page count, not Markdown word count, controls candidate layout QA.
 
 ## Reproduction
@@ -48,10 +48,10 @@ The dedicated boundary regression command is:
 
 ```text
 PASS: total=10 cover=1 body=8 references=1
-source_tokens=5328
+source_tokens=5283
 extracted text coverage=100.00%
 builder boundary regressions=22/22 PASS on the current source/PDF
-captured source SHA-256=d3f2951610873c9e3876eed29db1cede9c0d2ac92865f0e344a19e8f678bddf6
+captured source SHA-256=bf879704e8af7cbb7f9ddcd959cc376937cc6c091e40284b66ae7d23daa47ae3
 ```
 
 Automated gates verify:
@@ -74,7 +74,7 @@ Automated gates verify:
   text rendering mode; direct temporary content streams are retained during
   this scan so recycled CPython object identities cannot skip a later page; and
 - after removing the deterministic header/footer/watermark token prefix from
-  each page, the complete pypdf token sequence exactly equals all `5,328`
+  each page, the complete pypdf token sequence exactly equals all `5,283`
   normalized source tokens. Full raster inspection remains mandatory because
   content-stream checks alone do not prove visual legibility.
 
@@ -83,10 +83,9 @@ Automated gates verify:
 After the 2026-09-02 Workbench retitle, all ten pages were rebuilt, rendered at
 120 DPI with Poppler, and inspected. Cover title is **Model Effectiveness
 Evaluation Workbench**. FR-01 to FR-18 and NFR-10 are visible. `GroupXX` and
-approval sentinels remain. Constantinople / ESIPS Pound for Pound is not
-claimed complete. A later same-day numeric rebuild (152 tests / 94.02%
-coverage) kept 1 cover + 8 body + 1 references with 100% token coverage and
-builder regressions 22/22; that numeric rebuild did not repeat the 120-DPI
+approval sentinels remain. A later same-day wording rebuild kept 1 cover + 8
+body + 1 references with 5,283 source tokens, 100% extracted-text coverage,
+and builder regressions 22/22; that rebuild did not repeat the 120-DPI
 page-by-page visual pass.
 
 | Page | Classification | Visual result |

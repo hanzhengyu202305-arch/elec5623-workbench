@@ -80,12 +80,9 @@ published: **min-cost** versus a **quality/task-fit rule**. There is no hidden
 composite index and no auto model-deploy. Every success remains
 `READY_FOR_HUMAN_REVIEW`.
 
-Course evaluation practice is related to industry questions about
-effectiveness beyond price; this product is independent coursework and does
-not claim that any Constantinople / ESIPS Pound-for-Pound exercise is
-complete. Estimated cost is a published list price times a conservative token
-bound, not an invoice. Without complete `expected_claims`, comparison is
-reported without a prediction or success claim.
+This is independent ELEC5623 Track B coursework. Estimated cost is a published
+list price times a conservative token bound, not an invoice. Without complete
+`expected_claims`, comparison is reported without a prediction or success claim.
 
 The first-month Track B scope is Python 3.11 with FastAPI, Pydantic v2,
 scikit-learn, and pytest; English JSON/Markdown and local synthetic evidence
@@ -371,12 +368,10 @@ human review`. The distinction from a generic LLM wrapper is observable:
 | History can be edited or lost | No-clobber runs and append-only reviews |
 | “Looks correct” success | Explicit metrics, failure tests, and human-only decision |
 
-The product is also separate from existing research tools and prior work.
-FActScore and RAGAs provide referenced evaluation context [4], [5], but their
-code, data, metrics, results, and diagrams are not reused. AegisOps is disclosed
-as high-level inspiration only; ELEC5308 and the research-paper workspace are
-outside the project boundary. The full control is in
-`PRIOR_WORK_DISCLOSURE.md` and remains subject to mandatory tutor approval.
+The product is also separate from existing research tools. FActScore and RAGAs
+provide referenced evaluation context [4], [5], but their code, data, metrics,
+results, and diagrams are not reused. This ELEC5623 product is independent new
+work; see `PRIOR_WORK_DISCLOSURE.md`. Tutor approval of scope remains pending.
 
 ## 7. Proposed methodology and system design
 
@@ -503,8 +498,7 @@ workflow is relevant and which trace fields matter most.
 
 No commercial product feature, price, market share, or customer claim is made
 without a checked primary source. The current comparison is category-level and
-must be refined if the tutor requires named competitors. This coursework is
-independent of any Constantinople / ESIPS Pound-for-Pound completion claim.
+must be refined if the tutor requires named competitors.
 
 ### 8.3 Feasibility, benefits, costs, and operations
 
@@ -580,9 +574,8 @@ financial outcome. The current fixture result is regression evidence only.
 
 The planned corpus size is 20 bundles and 200 claims. Each bundle contains only
 new synthetic requirements, evidence, generated text, expected labels, and
-expected requirement mappings created for ELEC5623. No code, data, chart,
-experiment, report text, or demo material may be copied from AegisOps,
-ELEC5308, the research-paper workspace, or another assessed submission.
+expected requirement mappings created for ELEC5623. The corpus and product
+are independent of prior personal or other-unit work.
 
 Before final evaluation, obtain tutor approval; define labels, ambiguity and
 mapping rules without final predictions; use two permitted annotators or an
@@ -722,9 +715,10 @@ visibility and no autonomous action.
 
 ### 10.3 Academic integrity and prior work
 
-`PRIOR_WORK_DISCLOSURE.md` limits AegisOps to high-level inspiration and blocks
-all cross-project assessed artifacts. Show it to the tutor and retain the exact
-decision.
+This ELEC5623 product is independent new work and does not copy prior personal
+or other-unit code, data, or figures. `PRIOR_WORK_DISCLOSURE.md` records that
+boundary. Show it to the tutor and retain the exact decision. Do not claim
+approval until a written reply exists.
 
 OpenAI Codex was materially used on `2026-08-02` to scaffold and review the
 independent prototype, tests, evaluation tooling, and this proposal working

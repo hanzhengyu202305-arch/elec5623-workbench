@@ -30,8 +30,7 @@ inner engine remains the Inspector (FR-01–15). FR-16–18 add a sequential
 named-model compare shell: quality, task fit, latency, and estimated list-price
 cost are reported separately; min-cost is contrasted with a documented
 quality/task-fit rule; human review remains `READY_FOR_HUMAN_REVIEW`. No
-combined effectiveness index. Constantinople / ESIPS Pound for Pound is not
-claimed complete.
+combined effectiveness index.
 
 The blocked candidate PDF remains `DRAFT_NOT_FOR_SUBMISSION` with `GroupXX`.
 A local Workbench demo command is `bash scripts/run_workbench_demo.sh`.
