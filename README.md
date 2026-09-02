@@ -1,5 +1,12 @@
 # Model Effectiveness Evaluation Workbench
 
+Private GitHub (teammate read access, not a public product):
+https://github.com/hanzhengyu202305-arch/elec5623-workbench
+
+Clone: `git clone https://github.com/hanzhengyu202305-arch/elec5623-workbench.git`
+
+Group members should start with [GROUP_ONBOARDING.md](GROUP_ONBOARDING.md).
+
 Public product: **Model Effectiveness Evaluation Workbench**. The inner engine
 is the **Inspector** (FR-01–15). One shell, not two products or repositories.
 
@@ -317,6 +324,7 @@ live-provider reproducibility, or corpus generalization.
 
 ## Project truth surfaces
 
+- [Group onboarding (read first)](GROUP_ONBOARDING.md)
 - [Current status and verified gates](STATUS.md)
 - [Functional requirements](docs/REQUIREMENTS.md)
 - [NFRs and constraints](docs/NFR_CONSTRAINTS.md)
@@ -348,10 +356,9 @@ course-mandated and are not a frozen-corpus or generalisation claim.
 
 ## CI location
 
-The current Git root is the enclosing `study` repository. A workflow definition
-is placed at `.github/workflows/elec5623-fixture-ci.yml` from that root, with path filters and
-commands rooted at `projects/ELEC5623/evidence-inspector`. It is currently
-uncommitted and has not run on GitHub; activation requires deliberate
-commit/push. This project's nested workflow is retained only as a future
-standalone-repository template; GitHub does not discover it in the current
-monorepo layout.
+This dedicated private repository is
+https://github.com/hanzhengyu202305-arch/elec5623-workbench (`main`). A local
+`.github/workflows/ci.yml` template exists on disk but is not pushed: the
+current `gh` token lacks the `workflow` scope, so GitHub Actions is not
+enabled. Fixture CI has not run on GitHub. Human review remains the only
+automated success state; there is no auto-deploy.
