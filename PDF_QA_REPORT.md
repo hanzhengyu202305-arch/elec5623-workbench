@@ -11,12 +11,12 @@ member sign-off, or Canvas submission evidence.
 
 | Artifact | SHA-256 |
 |---|---|
-| `PROPOSAL_CANDIDATE_NOT_FOR_SUBMISSION.md` | `bf879704e8af7cbb7f9ddcd959cc376937cc6c091e40284b66ae7d23daa47ae3` |
+| `PROPOSAL_CANDIDATE_NOT_FOR_SUBMISSION.md` | `d410f9824be02a5bf404977f4a45d289058cafe39e6bbff2c87bc6a7ee57880d` |
 | `scripts/build_proposal_pdf.py` | `a120b09429e2ef46765bb75ff1584ef534a08fa2cb1188cfad3ff43d062b3730` |
 | `scripts/test_proposal_pdf_builder.py` | `2f97fd58d86e2721cf438889f6e6b37b461e1b139cb4ffcf071a0b8ca8943917` |
-| `output/pdf/ELEC5623_GroupXX_Proposal_DRAFT_NOT_FOR_SUBMISSION.pdf` | `9f97317d7c7b75c4723ce33101b35b369d987529e8caeb48118a6f35c755acbe` |
+| `output/pdf/ELEC5623_GroupXX_Proposal_DRAFT_NOT_FOR_SUBMISSION.pdf` | `c338e3a47f297804550c8e0147c922b1db857d405374e35cd5202417bd3a8549` |
 
-The builder normalizes `5,283` source tokens across the complete candidate.
+The builder normalizes `5,211` source tokens across the complete candidate.
 Page count, not Markdown word count, controls candidate layout QA.
 
 ## Reproduction
@@ -48,10 +48,10 @@ The dedicated boundary regression command is:
 
 ```text
 PASS: total=10 cover=1 body=8 references=1
-source_tokens=5283
+source_tokens=5211
 extracted text coverage=100.00%
 builder boundary regressions=22/22 PASS on the current source/PDF
-captured source SHA-256=bf879704e8af7cbb7f9ddcd959cc376937cc6c091e40284b66ae7d23daa47ae3
+captured source SHA-256=d410f9824be02a5bf404977f4a45d289058cafe39e6bbff2c87bc6a7ee57880d
 ```
 
 Automated gates verify:
@@ -74,19 +74,20 @@ Automated gates verify:
   text rendering mode; direct temporary content streams are retained during
   this scan so recycled CPython object identities cannot skip a later page; and
 - after removing the deterministic header/footer/watermark token prefix from
-  each page, the complete pypdf token sequence exactly equals all `5,283`
+  each page, the complete pypdf token sequence exactly equals all `5,211`
   normalized source tokens. Full raster inspection remains mandatory because
   content-stream checks alone do not prove visual legibility.
 
 ## Full visual inspection
 
-After the 2026-09-02 Workbench retitle, all ten pages were rebuilt, rendered at
-120 DPI with Poppler, and inspected. Cover title is **Model Effectiveness
-Evaluation Workbench**. FR-01 to FR-18 and NFR-10 are visible. `GroupXX` and
-approval sentinels remain. A later same-day wording rebuild kept 1 cover + 8
-body + 1 references with 5,283 source tokens, 100% extracted-text coverage,
-and builder regressions 22/22; that rebuild did not repeat the 120-DPI
-page-by-page visual pass.
+After the 2026-09-02 Lab 2 use-case/architecture rebuild, all ten pages were
+rendered at 120 DPI with Poppler and inspected. Cover title is **Model
+Effectiveness Evaluation Workbench**. Section 5 states the 20-minute tutor
+proxy walkthrough as proposed, not executed. Section 7 shows the Mermaid
+diagram (users, interfaces, services, data store, external endpoint, AI
+component, deployment) and the written use case. Section 9 labels
+`fixture`/`fixture-b` as development-structure evidence only. FR-01 to FR-18
+and NFR-10 are visible. `GroupXX` and approval sentinels remain.
 
 | Page | Classification | Visual result |
 |---:|---|---|
@@ -94,7 +95,7 @@ page-by-page visual pass.
 | 2 | Body 1/8 | PASS - Sections 2-4 remain readable; Inspector engine vs Workbench compare shell, min-cost vs quality/task-fit, and no auto-deploy wording are visible. |
 | 3 | Body 2/8 | PASS - stakeholder/scope text and complete FR-01 to FR-18 table plus compare CLI are legible; no split or clipped row. |
 | 4 | Body 3/8 | PASS - ten NFRs including NFR-10, six constraints, and requirement-to-evaluation trace including FR-16-18 are complete and readable. |
-| 5 | Body 4/8 | PASS - Sections 6-7, editable text workflow and data/model/storage boundary are self-contained. |
+| 5 | Body 4/8 | PASS - Sections 6-7; Mermaid architecture, text-pipeline supplement, and Lab 2 use-case table are readable; no clipping. |
 | 6 | Body 5/8 | PASS - business comparison and evaluation plan remain readable; named-policy contrast is visible. |
 | 7 | Body 6/8 | PASS - failure/reproducibility plan and RQ-to-evidence interpretation table are visible; no clipped table cells. |
 | 8 | Body 7/8 | PASS - risks, mitigations and direct GenAI/prior-work disclosure are complete and readable. |
@@ -112,7 +113,8 @@ blank page was observed.
 - Tutor name, approval date and approval statement.
 - Whole-group agreement and written tutor approval of the Workbench direction.
 - Week 3 participation and recorded tutor feedback.
-- Stakeholder evidence or an explicit tutor-approved alternative.
+- Stakeholder method proposed (20-minute tutor proxy walkthrough on the
+  daily_lab bundle + compare.md); not approved and not run.
 - Prior-work decision, final annotation/threshold decision and frozen result.
 - Final course-policy AI disclosure reconciliation and member sign-off.
 - Final filename, final PDF regeneration, Canvas upload and confirmation.

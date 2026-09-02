@@ -197,11 +197,17 @@ role archetypes, not confirmed interview participants.
 
 ### 5.2 Stakeholder-validation plan
 
-Validate which manual step consumes most attention, whether missed weak claims
-or false escalations are costlier, and which trace fields a reviewer needs.
-Record the permitted method, consent, findings, and resulting requirement
-changes. Private or identifiable notes remain outside the public repository. A
-tutor-approved alternative is required if stakeholder contact is not permitted.
+No interview or tutor approval is claimed. Needs below remain hypotheses.
+
+**Proposed tutor-approved alternative validation method** (status: proposed,
+not executed, awaiting written tutor agreement): a structured 20-minute
+walkthrough with the lab tutor as proxy reviewer, using
+`examples/daily_lab_writeup.json` and the `fixture` vs `fixture-b`
+`compare.md`. Record which review step is costly, whether missed-risky claims
+or false escalations are costlier, and which trace fields a decision record
+must retain. Identifiable notes stay private. Direct stakeholder contact is
+not assumed. Until the tutor agrees in writing and the walkthrough is run,
+requirement changes must not be justified by invented participant findings.
 
 ### 5.3 Stakeholder-level success definition
 
@@ -375,16 +381,40 @@ work; see `PRIOR_WORK_DISCLOSURE.md`. Tutor approval of scope remains pending.
 
 ## 7. Proposed methodology and system design
 
-### 7.1 Development method and editable data flow
+### 7.1 Development method and editable architecture
 
 Development follows requirement-led vertical slices: define a measurable
 requirement and acceptance criterion, implement it behind the shared service,
 add positive and negative tests with the selected pytest framework [7], retain
 the evidence handle, and update the
 traceability/proposal impact. Scope changes are reviewed against the approved
-Must/Should/Won't boundary before code changes. The text diagram below is the
-editable source diagram for the working draft; the final PDF may restyle it but
-must preserve the same nodes and boundaries.
+Must/Should/Won't boundary before code changes. The Mermaid diagram is the
+editable architecture source; the text pipeline is a supplement. The final PDF
+may restyle nodes but must preserve the same users, interfaces, services, data
+stores, external systems, AI component, and deployment boundary.
+
+```mermaid
+flowchart TB
+  U[Users: student, lab partner, evidence reviewer]
+  subgraph DB["Deployment boundary: one Python 3.11 process + artifact root"]
+    I[Interfaces: CLI validate/evaluate/compare/review; FastAPI /health and /v1]
+    subgraph Svc[Application services]
+      EV[EvaluationService]
+      CMP[ComparisonService]
+    end
+    AI["AI component: ModelGateway (fixture default; optional compatible)"]
+    DS[(Data store: runs input/report/reviews and compare.json/md)]
+  end
+  X[External systems: optional approved HTTPS OpenAI-compatible endpoint]
+  U --> I
+  I --> EV
+  I --> CMP
+  CMP --> EV
+  EV --> AI
+  EV --> DS
+  CMP --> DS
+  AI -.-> X
+```
 
 ```text
 English JSON bundle
@@ -409,24 +439,30 @@ strict decision schema. After classification, deterministic rules force
 unknown citations, false quotations, or uncited positive decisions to
 `UNSUPPORTED`, so a provider cannot bypass evidence integrity.
 
-Lab 2 requires the context/container view to name more than the model. Evidence
-reviewers use the CLI or HTTP interface; `EvaluationService` owns application
-orchestration; the local run store retains immutable inputs, reports and
+Evidence reviewers and students use the CLI or HTTP interface;
+`EvaluationService` and `ComparisonService` own application orchestration; the
+local run store retains immutable inputs, reports, compare artifacts and
 reviews; the optional compatible model endpoint is the only external system;
 and the deployment boundary is one Python 3.11 process plus its artifact root.
-The `ModelGateway` is one marked AI component. Validation, output enforcement,
+The `ModelGateway` is the marked AI component. Validation, output enforcement,
 safety preflight, logging/audit fields and human oversight remain outside it.
 
 ### 7.2 Primary written use case
 
+Daily scene: a student has one lab notebook and two AI write-ups. The
+Workbench validates the bundle, evaluates each named model, compares them, and
+stops at human review. Success is an appended human decision. There is no auto
+model-deploy.
+
 | Field | Draft content |
 |---|---|
-| Actor and goal | Evidence reviewer obtains a traceable decision packet for one bounded bundle. |
-| Trigger and preconditions | Reviewer invokes evaluation with schema-valid English requirements/evidence/output; an approved fixture or model configuration exists and the run root is writable. |
-| Main success flow | Validate IDs/schema; segment claims; retrieve/classify evidence; enforce citations/quotes; map requirements and compute metrics; atomically publish the run; retrieve it and append a human decision. |
-| Alternate/exception flows | Invalid input, injection, budget excess, provider failure, mismatched truth or aliased artifacts fail before a completed report; insufficient evidence remains explicit; disagreement is appended without rewriting machine evidence. |
-| Postcondition | Canonical input/report remain immutable, reviews are append-only, and no external action is authorised. |
-| Linked requirements | FR-01-15; especially FR-06-09, FR-11-15 and NFR-01, NFR-05, NFR-07. |
+| Actor and goal | Student or evidence reviewer obtains a traceable packet showing which of two models hallucinates less / fits the notebook task better. |
+| Trigger | Two English write-ups exist for the same notebook; the reviewer invokes the Workbench. |
+| Preconditions | Schema-valid English requirements, notebook evidence, and both Markdown outputs; an approved fixture or model configuration exists; the run root is writable. |
+| Main success flow | `validate` the bundle; `evaluate` each named model; `compare` quality, task-fit, time, and estimated cost plus min-cost vs quality/task-fit; inspect `report.md`/`compare.md`; `review` appends a human decision. Automated status remains `READY_FOR_HUMAN_REVIEW`. |
+| Alternate/exception flows | Invalid input, injection, budget excess, provider failure, mismatched truth, incomplete compare, or aliased artifacts fail before a completed report or `compare.json`. Insufficient evidence stays explicit. Disagreement is appended without rewriting machine evidence. |
+| Postconditions | Canonical input/report remain immutable, reviews are append-only, and no model is deployed or otherwise authorised. |
+| Linked requirements | `validate` FR-01-03, FR-12; `evaluate` FR-04-15; `compare` FR-16-18; `review` FR-14. Also NFR-01, NFR-05, NFR-07, NFR-10. |
 
 This is a draft use case for group/tutor review, not stakeholder-validation
 evidence.
@@ -523,11 +559,13 @@ business case are outside the first-month scope.
 
 ### 8.4 Business-validation gate
 
-Before final submission, the group must validate at least the target workflow,
-highest-cost review step, acceptable false-positive/false-negative trade-off,
-required trace fields, and willingness to perform human review. If course rules
-do not allow stakeholder contact, record the tutor-approved alternative. No
-invented interview, survey, cost saving, or market estimate may close this gate.
+No interview or tutor approval is claimed. The proposed alternative is a
+structured 20-minute walkthrough with the lab tutor as proxy reviewer using
+the daily-lab bundle and `compare.md`, recording the costly review step,
+missed-risky versus false-escalation preference, and required trace fields.
+Identifiable notes stay private. Status: **proposed, not executed, awaiting
+written tutor agreement**. Invented interview, survey, cost saving, or market
+estimate may not close this gate.
 
 ## 9. Evaluation plan
 
@@ -630,6 +668,13 @@ append-only review.
 
 ### 9.5 Current verified baseline and interpretation
 
+`fixture` and `fixture-b` are development gateways: they show that validate,
+evaluate, compare, and review **run as software** with deterministic, no-network
+behaviour. They do **not** prove real-model effectiveness. Final product
+evaluation still needs a tutor-approved live model if allowed, a frozen corpus
+with recorded annotation rules, and a real evaluation. At Proposal stage this
+section is a **plan**, not a claimed final result.
+
 The current reproducibility surfaces are
 `acceptance/local-20260804-review-integrity-v2/corpus-acceptance.json` and
 `acceptance/local-20260803-multitemplate-study-v3/baseline-study.json`.
@@ -648,9 +693,10 @@ The current reproducibility surfaces are
 
 The retained report records corpus/prediction hashes and status
 `DRAFT_UNFROZEN_NOT_TUTOR_APPROVED`;
-`tutor_approval_claimed` is false, and no external API was used. A final report
-must show the frozen-corpus result separately and must not overwrite this
-baseline.
+`tutor_approval_claimed` is false, and no external API was used. The 20/200
+numbers are **development-fixture** evidence, not acceptance and not
+live-model effectiveness. A final report must show the frozen-corpus result
+separately and must not overwrite this baseline.
 
 ### 9.6 Qualitative/expert evaluation and threats to validity
 

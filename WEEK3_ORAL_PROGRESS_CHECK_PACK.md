@@ -67,7 +67,10 @@ improves the evidence available to the person who still has to sign the report.
 > from supplied evidence. It sits inside a larger engineering workflow with
 > strict schemas, deterministic segmentation and retrieval, exact citation and
 > quotation enforcement, requirement mapping, metrics, immutable artifacts,
-> and append-only human review. It is not a generic chatbot or a thin LLM API
+> and append-only human review. An editable architecture diagram in Proposal
+> Section 7 and `docs/ARCHITECTURE.md` names users, interfaces, services, data
+> stores, the optional external model endpoint, the AI component, and the
+> deployment boundary. It is not a generic chatbot or a thin LLM API
 > wrapper because it has versioned inputs, specialised outputs, fail-closed
 > rules, measurable evaluation, and no conversational approval path.
 
@@ -124,9 +127,12 @@ provider suitability. Current progress is therefore described as a technical
 spike plus working Proposal, not an approved semester project.
 
 The next authorised steps are to capture actual group facts, obtain and record
-tutor feedback/approval, reconcile the new Lab 2 use-case and architecture
-controls, close the Lab 1/2 evidence gaps, and request iterative Proposal-draft
-feedback early enough to revise before `2026-09-08 23:59`.
+tutor feedback/approval, request written agreement for the proposed 20-minute
+tutor-as-proxy walkthrough (daily_lab bundle + compare.md), close the Lab 1/2
+evidence gaps, and request iterative Proposal-draft feedback early enough to
+revise before `2026-09-08 23:59`. The Lab 2 written use case and editable
+architecture diagram are now in the compressed candidate; stakeholder needs
+remain unvalidated.
 
 ## 3. Five-to-ten-minute group run sheet
 

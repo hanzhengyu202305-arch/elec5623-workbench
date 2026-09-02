@@ -125,18 +125,22 @@ is made.
 | Team lead or assessor | Reproduce inputs, configuration, output, and review history | Synthetic metrics create false confidence |
 | System administrator | Operate a bounded, fail-closed evaluation path | Data leakage or provider outage |
 
-The proposed primary stakeholders are evidence reviewers, requirement owners,
-and report authors. Proposed secondary stakeholders are team leads or assessors
-and system administrators. This classification is a hypothesis that the group
-and tutor must confirm rather than an established organisational fact.
+The proposed primary stakeholders are students checking a lab write-up,
+evidence reviewers, requirement owners, and report authors. Proposed secondary
+stakeholders are team leads or assessors and system administrators. Roles and
+needs are hypotheses. No interview, survey finding, or tutor approval is
+claimed.
 
-Validation will ask which step consumes most attention, whether missed risky
-claims or false escalations are costlier, and what evidence a decision record
-must retain. The group will record the permitted method, consent, findings, and
-resulting requirement changes. Identifiable notes stay private. If direct
-stakeholder contact is not permitted or feasible, `[REQUIRED: record the
-tutor-approved validation alternative]`; no participant or result will be
-invented.
+**Proposed tutor-approved alternative validation method** (status: proposed,
+not executed, awaiting written tutor agreement;
+`[REQUIRED: written tutor agreement before any walkthrough]`): a structured
+20-minute walkthrough with the lab tutor as proxy reviewer, using
+`examples/daily_lab_writeup.json` and the `fixture` vs `fixture-b`
+`compare.md`. Record which review step is costly, whether missed-risky claims
+or false escalations are costlier, and which trace fields a decision record
+must retain. Identifiable notes stay private. Until that agreement is written
+and the walkthrough is run, every stakeholder need remains a hypothesis. The
+complete Lab 2 written use case is in Section 7.
 
 ### 5.2 Scope and priority
 
@@ -254,64 +258,60 @@ failure tests. It is independent from FActScore and RAGAs beyond cited context
 
 ## 7. Proposed methodology and system design
 
-Development uses requirement-led vertical slices. For each approved
-requirement, the group defines an acceptance criterion, implements behind the
-shared service, adds positive and negative pytest tests [7], retains an
-evidence handle, and updates traceability. Scope changes are checked against
-Must/Should/Could/Won't priorities and require the recorded tutor agreement
-where they affect the approved topic or core requirements.
+Requirement-led slices: acceptance criterion, shared service, pytest tests [7],
+evidence, traceability. The editable diagram names users, interfaces, services,
+data stores, external systems, the AI component, and the deployment boundary.
+The text pipeline is a supplement.
 
-```text
-English JSON bundle
-  -> Pydantic schema and uniqueness validation
-  -> token-budget and prompt-injection preflight
-  -> deterministic Markdown claim segmentation
-  -> local evidence retrieval (TF-IDF or named lexical fallback)
-  -> ModelGateway support classification
-  -> citation and exact-quote enforcement
-  -> requirement mapping and metrics
-  -> no-clobber input/report artifacts
-  -> append-only human review
+```mermaid
+flowchart TB
+  U[Users: student, evidence reviewer]
+  I[Interfaces: CLI and FastAPI]
+  S[Services: EvaluationService, ComparisonService]
+  AI[AI component: ModelGateway]
+  DS[Data store: local run directory]
+  X[External: optional HTTPS model endpoint]
+  DB[Deployment: Python 3.11 process + artifact root]
+  U --> I --> S --> AI
+  S --> DS
+  AI -.-> X
+  S --- DB
 ```
 
-First-month data comes only from newly created synthetic English JSON bundles
-and AI-generated Markdown stored on the local filesystem. CI uses the
-deterministic `FixtureModelGateway`; an Azure/OpenAI-compatible gateway is an
-optional integration only after model, budget, privacy, account, and tutor
-conditions are recorded. The local filesystem remains the first-month artifact
-store; no database or web retrieval is introduced.
+CLI/HTTP are the interfaces. `ModelGateway` is the marked AI component and
+cannot write files or approve actions. Validation, citation/quote enforcement,
+safety preflight, logging, and human oversight remain outside it. Retrieval
+uses TF-IDF or a named lexical fallback [6].
 
-Pydantic rejects unknown or invalid fields. Preflight applies a conservative
-canonical UTF-8 bound and a tested injection guard. Segmentation excludes
-headings and code fences and rejects output without auditable prose. Retrieval
-records its backend; scikit-learn documents the TF-IDF feature conversion [6],
-while local tests define this product's behaviour. Fixture mode is deterministic.
-An optional OpenAI-compatible gateway remains disabled until endpoint,
-deployment, model settings, budget, privacy, and tutor conditions are recorded.
-External credentials require HTTPS because authentication and provider policy
-demand it.
+```text
+JSON bundle -> schema/preflight -> segment -> retrieve -> ModelGateway
+  -> citation/quote checks -> metrics -> artifacts -> compare -> human review
+```
 
-After model classification, deterministic rules force unknown citations,
-uncited positive decisions, and false quotations to `UNSUPPORTED`. Each
-successful evaluation reserves a distinct directory, writes canonical input
-and human-readable output, and writes `report.json` last as the completion
-marker. A partial write cannot be retrieved as success. Reviews append to
-`reviews.jsonl` without modifying the report.
+Daily scene: one notebook, two AI write-ups. Validate, evaluate, compare, then
+human review. Success is an appended decision, not auto model-deploy.
 
-Principal limitations are lexical retrieval, English-only segmentation,
-exact-string quote checking, synthetic data, no authentication layer, local
-filesystem assumptions, and no evidence that fixture results generalise to
-natural documents. These limitations are evaluation targets, not hidden
-implementation details.
+| Field | Content |
+|---|---|
+| Actor and goal | Student/reviewer: which of two models hallucinates less / fits the notebook task better. |
+| Trigger | Two English write-ups for the same notebook; reviewer starts the Workbench. |
+| Preconditions | Valid English requirements, notebook evidence, both Markdown outputs; writable run root; fixture or approved gateway. |
+| Main success flow | `validate`; `evaluate` each model; `compare` quality/task-fit/time/cost and min-cost vs quality/task-fit; inspect reports; `review` appends a human decision. Status stays `READY_FOR_HUMAN_REVIEW`. |
+| Alternate/exception flows | Invalid input, injection, budget, provider, mismatched truth, incomplete compare, or aliased artifacts fail before a completed report/`compare.json`. Disagreement appends only. |
+| Postconditions | Input/report immutable; reviews append-only; no model deployed or approved. |
+| Linked FRs | `validate` FR-01-03, FR-12; `evaluate` FR-04-15; `compare` FR-16-18; `review` FR-14; NFR-01, NFR-05, NFR-07, NFR-10. |
+
+Design draft, not stakeholder evidence. Synthetic local data; CI uses
+`FixtureModelGateway`. Unknown citations and false quotes become `UNSUPPORTED`.
+`report.json` last. Limitations: lexical retrieval, English-only text,
+exact-string quotes, and no live-model generalisation.
 
 ## 8. Business and product analysis
 
 The value proposition is **a reproducible human-review packet and a named-model
-comparison, not auto model-deploy**. Candidate users gain a stable queue in
-which evidence, requirements, machine rationale, and later human decisions
-remain inspectable, and in which quality, task fit, latency, and estimated
-list-price cost are reported separately. Min-cost and quality/task-fit are
-contrasted, never collapsed. These benefits remain stakeholder hypotheses.
+comparison, not auto model-deploy**. Quality, task fit, latency, and estimated
+list-price cost stay separate; min-cost and quality/task-fit are contrasted,
+never collapsed. These benefits remain stakeholder hypotheses.
 
 | Alternative | Strength | Gap for this proposed need | Workbench response |
 |---|---|---|---|
@@ -322,51 +322,47 @@ contrasted, never collapsed. These benefits remain stakeholder hypotheses.
 | Broad governance platform | Operational breadth | Potentially opaque, inaccessible, or too broad | Deliver a narrow transparent semester slice |
 | Token or model-price comparison | Easy to collect | Silent on quality and task fit; can mislead selection | Keep dimensions separate; two named policies, not a hidden index |
 
-Technical feasibility is supported by the existing Python vertical slice,
-contract tests, and deterministic fixture path, but final feasibility depends
-on the approved scope and course environment. Team feasibility is unknown until
-members, availability, skills, and FR allocation are confirmed. The main costs
-are engineering and review time, annotation effort, approved model usage if
-enabled, CI/runtime resources, and retained artifacts. No currency, cloud
-credit, customer, price, market-share, or savings claim is made. This is
+Technical feasibility is supported by the Python vertical slice and fixture
+path; team feasibility is unknown until members and FR allocation are
+confirmed. Costs are engineering, annotation, approved model use if enabled,
+and runtime. No currency, customer, or savings claim is made. This is
 independent ELEC5623 Track B coursework.
 
 Operational needs include Python onboarding, secrets outside source and
 artifacts, HTTPS for external credentials, storage retention, model-version
 records, provider outage handling, and ownership of the human queue.
 Authentication, tenancy, production support, and a commercial launch are out of
-scope. Before submission the group must validate the target workflow, error
-trade-off, required trace fields, and willingness to review, or record a
-tutor-approved alternative.
+scope. Stakeholder needs stay hypotheses until the proposed 20-minute tutor
+proxy walkthrough is agreed in writing and actually run.
 
 ## 9. Evaluation plan
 
-The evaluation asks whether the Inspector preserves complete claim-evidence
-traces (RQ1), distinguishes five support labels (RQ2, quality), detects
-unsupported and contradicted claims (RQ3, quality), maps stated requirements
-(RQ4, task fit), fails closed (RQ5, efficiency), can be reproduced (RQ6), and
-whether min-cost vs quality/task-fit agree with annotation-preferred when
-labels exist (RQ7, Workbench). Dimensions are not combined into one score.
-Without labels, compare is comparison only and must not claim prediction or
-success. Estimated cost is list-price × conservative token bound, not a bill.
+This section is a **plan**, not a claimed final result. `fixture` and
+`fixture-b` are **development evidence that the software structure runs**
+(deterministic, no live network). They do **not** prove real-model
+effectiveness. Final product still needs a tutor-approved live model if
+allowed, a frozen corpus with annotation rules, and a real evaluation.
 
-The planned dataset is 20 bundles and 200 claims, containing only newly created
-synthetic requirements, evidence, Markdown, expected labels, and requirement
-mappings for ELEC5623. The corpus is independent of prior personal or other-unit
-work. Before final
-evaluation, the group must obtain tutor approval, freeze operational label and
-ambiguity rules without seeing final predictions, use two permitted annotators
-or an approved alternative, resolve disagreement independently of model
-output, hash the corpus and labels, and prohibit tuning on the final labels.
-The current generator and fixture are regression evidence, not independent
-annotation or a frozen result.
+The evaluation asks whether traces stay complete (RQ1), five labels are
+distinguished (RQ2, quality), risky claims are detected (RQ3, quality),
+requirements are mapped (RQ4, task fit), failures close (RQ5, efficiency),
+results reproduce (RQ6), and min-cost vs quality/task-fit match
+annotation-preferred when labels exist (RQ7). Dimensions are not combined.
+Unlabelled compare is comparison only. Estimated cost is list-price × token
+bound, not a bill.
 
-For each class, precision is `TP/(TP+FP)`, recall is `TP/(TP+FN)`, and F1 is
-their harmonic mean. Five-label macro-F1 is the unweighted mean of the five
-class F1 values. Risky precision and recall treat `UNSUPPORTED` and
-`CONTRADICTED` as the combined positive set. Requirement-mapping macro-F1 is
-calculated per requirement then averaged. Citation completeness is the
-proportion of claims with at least one citation for which every cited ID exists.
+The planned dataset is 20 new ELEC5623 bundles / 200 claims. Before final
+evaluation: tutor approval, freeze label rules without seeing predictions,
+two permitted annotators or an approved alternative, independent disagreement
+resolution, hashed corpus/labels, no tuning on final labels. Current
+`fixture`/`fixture-b` numbers are development-structure evidence, not
+independent annotation.
+
+Precision `TP/(TP+FP)`, recall `TP/(TP+FN)`, F1 their harmonic mean.
+Five-label macro-F1 averages class F1. Risky precision/recall treat
+`UNSUPPORTED` and `CONTRADICTED` as the positive set. Mapping macro-F1 is
+per-requirement then averaged. Citation completeness requires every cited ID
+to exist.
 
 | Measure | Proposed target |
 |---|---:|
@@ -378,9 +374,8 @@ proportion of claims with at least one citation for which every cited ID exists.
 | Elapsed time for 200 claims | <=60.0 seconds on the nominated machine |
 | Two-model sample/daily compare | <=60.0 seconds; incomplete compares publish nothing |
 
-These values are engineering proposals, not course thresholds. Tutor feedback,
-stakeholder trade-offs, and a development-set rationale must confirm or revise
-them before freezing the evaluation.
+These values are engineering proposals, not course thresholds, pending tutor
+review.
 
 | Comparison | Planned control |
 |---|---|
@@ -405,11 +400,12 @@ The present local vertical slice has 152 passing tests and 94.02% branch
 coverage. The current no-clobber acceptance at
 `acceptance/local-20260804-review-integrity-v2/corpus-acceptance.json` reports 20
 bundles and 200 claims: macro-F1 0.857701, risky precision/recall
-0.930233/1.0, mapping macro-F1 0.96, and 37 label plus 12 mapping errors. Its
-status remains
-`DRAFT_UNFROZEN_NOT_TUTOR_APPROVED`; these local fixture results are not final
-acceptance evidence. The submission must report a later frozen result
-separately with per-class metrics, errors, hashes, and all failed thresholds.
+0.930233/1.0, mapping macro-F1 0.96, and 37 label plus 12 mapping errors. Those
+20/200 numbers remain labelled `DRAFT_UNFROZEN` **development-fixture**
+evidence (`DRAFT_UNFROZEN_NOT_TUTOR_APPROVED`). They are not acceptance, not
+live-model effectiveness, and not a frozen result. The submission must report a
+later frozen evaluation separately with per-class metrics, errors, hashes, and
+all failed thresholds.
 
 If permitted, at least one reviewer who did not author the evaluated bundle
 will locate a risky claim, inspect evidence and requirement traces, append a

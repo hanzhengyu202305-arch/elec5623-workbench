@@ -137,7 +137,7 @@ establish attendance.
 | 4 | Problem/motivation: gap, affected users, importance, why GenAI | Decision statement and GenAI boundary | Candidate users identified as hypotheses | Section 4 | Product owner / tutor | `DRAFT` |
 | 5 | Stakeholders/requirements: needs, FR, NFR, assumptions, constraints, AC, priority | 15 FRs, 9 NFRs, constraints, MoSCoW, AC links | `docs/REQUIREMENTS.md`, `docs/NFR_CONSTRAINTS.md`, tests | Section 5 | Whole group / tutor | `DRAFT` |
 | 6 | Product/innovation: concept, features, workflow, AI, contribution, distinction | Specialised workflow and no-chatbot comparison | Vertical slice and prior-work disclosure | Section 6 | Product/AI owner / tutor | `DRAFT` |
-| 7 | Method/system design: development, workflow, data, models/tools/integrations, editable diagram | Text-editable architecture and method | `docs/ARCHITECTURE.md`, source/tests | Section 7 | Technical owners | `DRAFT` |
+| 7 | Method/system design: development, workflow, data, models/tools/integrations, editable diagram | Mermaid architecture plus text-pipeline supplement | `docs/ARCHITECTURE.md`, candidate Section 7, source/tests | Section 7 | Technical owners | `DRAFT` |
 | 8 | Business/product: value, users/customers, alternatives, feasibility, benefits, costs/operations | Hypothesis-based analysis | No fabricated commercial data; stakeholder validation pending | Section 8 | Business/research owner | `OPEN` |
 | 9 | Evaluation: success, scenarios, baseline, quantitative/qualitative, user/expert where relevant | RQs, metrics, baselines, failure tests | Draft fixture artifact retained; final freeze/user evaluation pending | Section 9 | Evaluation owner / tutor | `DRAFT` |
 | 10 | Risks/ethics/responsible AI: technical, data, safety, privacy, bias, legal, adoption and mitigation | Risk register and controls | Current failure tests plus open legal/adoption review | Section 10 | Whole group | `DRAFT` |
@@ -153,8 +153,8 @@ report` mappings; they do not imply tutor acceptance or a final rubric version.
 | ID | New course-source expectation | Implementation | Test | Evidence | Proposal/report location | Status |
 |---|---|---|---|---|---|---|
 | P2-01 | Functional requirements use `system shall + observable behaviour`; NFRs use a measurable threshold/constraint; acceptance uses Given/When/Then, metric, threshold, or pass condition | Existing 18 FRs, ten NFRs and ACs retained; vague-quality audit added | Requirements/Proposal structure checks plus manual wording audit | Lab 2 p.3 and current requirements docs | Section 5 | `DRAFT` |
-| P2-02 | Include a written use case with actor/goal, trigger/preconditions, main flow, alternate/exception flows, postconditions, and linked requirements | Primary evaluation-and-review use case added to the full working draft; compressed candidate reconciliation remains open | Proposal structure check; manual field-completeness audit | Lab 2 p.3 | Sections 5 and 7 | `DRAFT / CANDIDATE_UPDATE_OPEN` |
-| P2-03 | High-level system design shows users, interfaces, application services, data stores, external systems and deployment boundaries; mark the AI component and explain model access/adaptation, context, tools, validation, safety, human oversight and logging | Working-draft architecture text now names every boundary; compressed candidate/diagram reconciliation remains open | Proposal structure check plus manual diagram-field audit | Lab 2 p.4; `docs/ARCHITECTURE.md` | Section 7 | `DRAFT / CANDIDATE_UPDATE_OPEN` |
+| P2-02 | Include a written use case with actor/goal, trigger/preconditions, main flow, alternate/exception flows, postconditions, and linked requirements | Complete Lab 2 use case is in the compressed candidate Section 7 and the working draft: daily scene of two AI lab write-ups vs one notebook; linked `validate`/`evaluate`/`compare`/`review` FRs; human review is success; no auto model-deploy | Proposal structure check; manual field-completeness audit | Lab 2 p.3 | Sections 5 and 7 | `DRAFT` |
+| P2-03 | High-level system design shows users, interfaces, application services, data stores, external systems and deployment boundaries; mark the AI component and explain model access/adaptation, context, tools, validation, safety, human oversight and logging | Editable Mermaid in candidate Section 7 and `docs/ARCHITECTURE.md` names users, interfaces, services, data stores, external systems, AI component, and deployment boundary; text pipeline is a supplement | Proposal structure check plus manual diagram-field audit | Lab 2 p.4; `docs/ARCHITECTURE.md` | Section 7 | `DRAFT` |
 | P2-04 | Business/product analysis covers problem evidence, target users/stakeholders, alternatives, value, feasibility/adoption, and product/model/safety/latency/cost success measures | Existing bounded analysis reconciled; unvalidated facts remain explicit hypotheses | Manual section-completeness and unsupported-claim audit | Lab 2 p.4 | Sections 3-4, 8-10 | `DRAFT` |
 
 ## 6. Minimum requirements-engineering content
@@ -166,7 +166,7 @@ report` mappings; they do not imply tutor acceptance or a final rubric version.
 | R-03 | At least 3 constraints | C-01-C-06 proposed constraints | Explicit constraint table in Proposal/NFR document | Section 5 | Whole group / tutor | `DRAFT` |
 | R-04 | Testable AC for most important requirements | Acceptance evidence for every draft FR; key AC table | Existing tests/traceability; official “most important” set awaits priority approval | Section 5 | Whole group / tutor | `DRAFT` |
 | R-05 | Requirements align directly with evaluation | FR/NFR traceability and RQ/metric mapping | `docs/TRACEABILITY.md`; final rubric/freeze pending | Sections 5, 9 | Evaluation owner | `DRAFT` |
-| R-06 | Include stakeholder needs | Candidate stakeholder/need table | Needs are unvalidated hypotheses | Section 5 | Research owner | `OPEN` |
+| R-06 | Include stakeholder needs | Candidate stakeholder/need table plus proposed 20-minute tutor-as-proxy walkthrough | Needs remain hypotheses. Method proposed, not approved, not run. No interview invented. | Section 5 | Research owner | `DRAFT` |
 | R-07 | Include assumptions and prioritisation where appropriate | Claim-status, MoSCoW, constraints | Tutor/team decisions pending | Section 5 | Product owner | `DRAFT` |
 
 ## 7. Submission and academic-integrity requirements
@@ -236,8 +236,9 @@ review, evidence ZIP, attendance, or tutor feedback was found locally.
    put tutor name, approval date, and brief approval statement on the cover.
 3. **Requirements gate:** allocate at least three FRs per actual person, confirm
    priorities, and reconcile FR/NFR/constraints/AC against tutor feedback.
-4. **Evidence gate:** validate stakeholder/background claims with credible
-   references; freeze the corpus/labels only after the approved protocol.
+4. **Evidence gate:** stakeholder needs remain hypotheses. A 20-minute
+   tutor-as-proxy walkthrough is proposed, not approved, and not run. Freeze
+   the corpus/labels only after the approved protocol.
 5. **Lab account gate:** reconcile the existing 2026-08-12 Azure/Codex record,
    add Azure credit, exact client versions and run times, retain redacted
    screenshots, and repeat Run 2 within 120 words. The region-policy correction

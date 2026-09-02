@@ -1,5 +1,32 @@
 # Architecture and data flow
 
+Editable Lab 2 context diagram. It names users, interfaces, application
+services, data stores, external systems, the marked AI component, and the
+deployment boundary. The text pipeline below is a supplement.
+
+```mermaid
+flowchart TB
+  U[Users: student, lab partner, evidence reviewer]
+  subgraph DB["Deployment boundary: one Python 3.11 process + artifact root"]
+    I[Interfaces: CLI validate/evaluate/compare/review; FastAPI /health and /v1]
+    subgraph Svc[Application services]
+      EV[EvaluationService]
+      CMP[ComparisonService]
+    end
+    AI["AI component: ModelGateway (fixture default; optional compatible)"]
+    DS[(Data store: runs input/report/reviews and compare.json/md)]
+  end
+  X[External systems: optional approved HTTPS OpenAI-compatible endpoint]
+  U --> I
+  I --> EV
+  I --> CMP
+  CMP --> EV
+  EV --> AI
+  EV --> DS
+  CMP --> DS
+  AI -.-> X
+```
+
 ```text
 English JSON bundle
   -> Pydantic schema + uniqueness validation

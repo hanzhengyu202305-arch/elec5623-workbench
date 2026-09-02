@@ -72,8 +72,10 @@ Subject: `ELEC5623 Track B written approval request: Model Effectiveness Evaluat
 > acceptable for Track B, (2) extending the Inspector audit to multi-model
 > effectiveness comparison is in scope, (3) the proposed Must/Should/Won't
 > boundary is appropriate, (4) the prior-work disclosure and independence
-> controls are sufficient, and (5) the proposed synthetic evaluation and
-> compare method is acceptable? We would also appreciate any required changes
+> controls are sufficient, (5) the proposed synthetic evaluation and
+> compare method is acceptable, and (6) a 20-minute walkthrough with you as
+> proxy reviewer on the daily_lab bundle and compare.md may stand in for
+> stakeholder interviews? We would also appreciate any required changes
 > and confirmation of the live team rule and any additional AI/reference
 > guidance not stated in the hashed Proposal brief.
 >
@@ -181,6 +183,7 @@ Ask for a bounded answer to each item. “Discussed” is not an approval state.
 | TA-11 | Does the revised Proposal adequately cover the Lab 2 use-case, system-boundary, workflow and product-analysis guidance? | Written comments and resulting revision record | `PENDING` |
 | TA-12 | Is reporting quality, task fit, latency, and estimated cost as separate dimensions, without a combined price-proxy score, acceptable? | Written evaluation-framing decision | `PENDING` |
 | TA-13 | Do you approve in writing the new direction: extending the Inspector single-model audit to multi-model effectiveness comparison (Workbench FR-16–18)? | Written approval of this direction, or required changes | `PENDING` |
+| TA-14 | May a structured 20-minute walkthrough with you as proxy reviewer, using `examples/daily_lab_writeup.json` and `fixture` vs `fixture-b` `compare.md`, stand in for stakeholder interviews? Record costly review step, missed-risky vs false-escalation preference, and required trace fields. Identifiable notes stay private. | Written yes/conditions/rejection; method is proposed, not executed | `PENDING` |
 
 If the tutor is not authorised to answer an item, record the escalation contact
 instead of interpreting silence as approval.
@@ -219,7 +222,7 @@ data, or material from other units or prior personal projects.
 ### During
 
 - [ ] State the human-review boundary before showing model outputs.
-- [ ] Ask TA-01 through TA-13 or record which items are deferred.
+- [ ] Ask TA-01 through TA-14 or record which items are deferred.
 - [ ] Show the prior-work disclosure explicitly.
 - [ ] Ask what evidence counts as formal approval.
 - [ ] Record exact required changes, owner, and due date.

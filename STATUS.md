@@ -73,9 +73,14 @@ evidence, Lab 2 execution, and Week 3/4 oral results are still human gates.
 
 ## Verified evidence
 
-- 2026-09-02 Workbench follow-up: local demo script, Lab 1 word-count helper,
-  architecture/compare CLI wording, and Proposal test-count reconciliation.
-  Group/tutor/Canvas sentinels unchanged. See the journal append for this date.
+- 2026-09-02 Proposal/docs/README follow-up: pytest `pythonpath = ["."]`;
+  `PYTHONPATH=. uv run --frozen pytest` and `.venv/bin/pytest` both collected
+  `from scripts...` and passed `152` tests at `94.02%` branch coverage on
+  CPython `3.11.15`. Compressed candidate has the Lab 2 written use case and
+  editable Mermaid architecture. Stakeholder method is a proposed 20-minute
+  tutor proxy walkthrough (not approved, not run). `fixture`/`fixture-b` are
+  labelled development-structure evidence only. Blocked PDF rebuilt as
+  1 cover + 8 body + 1 references; builder `22/22`. See the journal append.
 
 - The `2026-08-31` course-logistics reconciliation converted authenticated Ed
   thread `3542678` into a dated source-to-action/evidence gate without changing
@@ -378,8 +383,9 @@ described as complete.
   approval sentinel with verified facts, reconcile the resulting content, then
   rebuild and visually re-QA the final 8-10 body-page candidate. The current
   blocked draft (SHA-256
-  `b02f49d538474f22508af731e8ff6558c55e260028c2890f014575506031fab4`)
-  proves layout feasibility and the Workbench wording only.
+  `c338e3a47f297804550c8e0147c922b1db857d405374e35cd5202417bd3a8549`)
+  proves layout feasibility, the Workbench wording, the Lab 2 use case, and the
+  editable architecture diagram only.
   Do not upload the `GroupXX` file to Canvas.
 - Complete the remaining Lab 1 evidence: record Azure credit, exact client
   versions and run times, retain secret-free screenshots, repeat Run 2 within

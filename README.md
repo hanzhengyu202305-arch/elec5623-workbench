@@ -191,8 +191,25 @@ must use HTTPS because they carry credentials.
 
 ## Verification
 
-Current bounded local verification uses CPython `3.11.15`: `149` tests pass at
-`94.02%` branch coverage. The current no-clobber development reports are:
+Current bounded local verification uses CPython `3.11.15`: `152` tests pass at
+`94.02%` branch coverage. After `uv sync` (this repo has `uv.lock`) or
+`python -m pip install -e '.[dev]'`, pytest collects `from scripts...` because
+`pyproject.toml` sets `pythonpath = ["."]`. The documented commands still set
+`PYTHONPATH=.` explicitly:
+
+```bash
+PYTHONPATH=. uv run --frozen pytest
+PYTHONPATH=. uv run --frozen pytest --cov=evidence_inspector --cov-branch
+```
+
+Equivalent with the project `.venv`:
+
+```bash
+PYTHONPATH=. .venv/bin/pytest
+PYTHONPATH=. .venv/bin/pytest --cov=evidence_inspector --cov-branch
+```
+
+The current no-clobber development reports are:
 
 - `acceptance/local-20260804-review-integrity-v2/corpus-acceptance.json`;
 - `acceptance/local-20260803-multitemplate-study-v3/baseline-study.json`; and
@@ -220,8 +237,8 @@ of these runs. See
 `docs/CLEAN_ENVIRONMENT_REPRODUCTION.md` for the exact boundary.
 
 ```bash
-pytest
-pytest --cov=evidence_inspector --cov-report=term-missing
+PYTHONPATH=. uv run --frozen pytest
+PYTHONPATH=. uv run --frozen pytest --cov=evidence_inspector --cov-branch
 python scripts/generate_synthetic_corpus.py --check-only
 python scripts/check_fixture_reproducibility.py examples/sample_bundle.json \
   --runs-root acceptance/repro-runs-YYYYMMDD-HHMMSS \
@@ -240,11 +257,11 @@ output/pdf/ELEC5623_GroupXX_Proposal_DRAFT_NOT_FOR_SUBMISSION.pdf
 PDF_QA_REPORT.md
 ```
 
-Build with the bundled workspace Python, which carries the isolated PDF tooling:
+Build with the project `.venv` Python 3.11, which carries the isolated PDF
+tooling:
 
 ```bash
-/Users/hanzhengyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 \
-  scripts/build_proposal_pdf.py --force
+.venv/bin/python scripts/build_proposal_pdf.py --force
 ```
 
 The builder defaults to no-clobber; `--force` replaces only an existing regular
@@ -263,8 +280,7 @@ inputs byte-reproducible. Raster inspection remains a separate required gate.
 Run the PDF-boundary regression suite separately from the coursework runtime:
 
 ```bash
-/Users/hanzhengyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 \
-  scripts/test_proposal_pdf_builder.py
+.venv/bin/python scripts/test_proposal_pdf_builder.py
 ```
 
 The builder does not close team, tutor, stakeholder, policy, frozen-result,
